@@ -18,11 +18,11 @@
     input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
     input[type="date"] { color-scheme: dark; }
     /* Rapor butonları */
-    .rapor-btn-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:16px; }
-    .rapor-num-btn { background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px 12px;cursor:pointer;text-align:left;transition:border-color .2s; }
-    .rapor-num-btn:hover { border-color:var(--gold);background:rgba(160,120,48,.1); }
-    .rapor-num-btn .rn { font-size:22px;font-weight:900;color:var(--gold2);line-height:1; }
-    .rapor-num-btn .rt { font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.4px;margin-top:4px; }
+    .r6-row{display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+    .r6-num{font-size:18px;font-weight:900;color:var(--gold2);min-width:22px}
+    .r6-ico{font-size:14px}
+    .r6-title{flex:1;font-weight:700;font-size:13px}
+    .r6-show{min-width:80px}
   </style>
 </head>
 <body>
@@ -213,25 +213,15 @@
           <span style="color:var(--text2)">—</span>
           <input type="date" id="r6End" style="width:135px">
         </div>
-        <!-- Rapor listesi: her satırda rapor butonu + dışa aktar butonu -->
         <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
-          ${[
-            [1,'📋','Tüm Rezervasyonlar'],
-            [2,'🏨','Otel Bazlı Özet'],
-            [3,'👥','Personel Performansı'],
-            [4,'🚗','Araç Kullanım'],
-            [5,'🔧','Plakasız / Atanmamış'],
-            [6,'❌','İptal Listesi'],
-            [7,'🌍','Uyruk Dağılımı'],
-            [8,'⏰','Saatlik Dağılım']
-          ].map(([n,ic,t])=>`
-          <div style="display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 12px">
-            <span style="font-size:18px;font-weight:900;color:var(--gold2);min-width:24px">${n}</span>
-            <span style="font-size:14px">${ic}</span>
-            <span style="flex:1;font-weight:700;font-size:13px">${t}</span>
-            <button class="btn-dark btn-sm" onclick="adminRaporGoster(${n})" id="r6btn${n}" style="min-width:80px">▶ Göster</button>
-            <button class="btn-gold btn-sm" onclick="adminRaporExport(${n})" style="min-width:90px">⬇ Aktar</button>
-          </div>`).join('')}
+          <div class="r6-row"><span class="r6-num">1</span><span class="r6-ico">📋</span><span class="r6-title">Tüm Rezervasyonlar</span><button class="btn-dark btn-sm r6-show" onclick="adminRaporGoster(1)">▶ Göster</button><button class="btn-gold btn-sm" onclick="adminRaporExport(1)">⬇ Aktar</button></div>
+          <div class="r6-row"><span class="r6-num">2</span><span class="r6-ico">🏨</span><span class="r6-title">Otel Bazlı Özet</span><button class="btn-dark btn-sm r6-show" onclick="adminRaporGoster(2)">▶ Göster</button><button class="btn-gold btn-sm" onclick="adminRaporExport(2)">⬇ Aktar</button></div>
+          <div class="r6-row"><span class="r6-num">3</span><span class="r6-ico">👥</span><span class="r6-title">Personel Performansı</span><button class="btn-dark btn-sm r6-show" onclick="adminRaporGoster(3)">▶ Göster</button><button class="btn-gold btn-sm" onclick="adminRaporExport(3)">⬇ Aktar</button></div>
+          <div class="r6-row"><span class="r6-num">4</span><span class="r6-ico">🚗</span><span class="r6-title">Araç Kullanım</span><button class="btn-dark btn-sm r6-show" onclick="adminRaporGoster(4)">▶ Göster</button><button class="btn-gold btn-sm" onclick="adminRaporExport(4)">⬇ Aktar</button></div>
+          <div class="r6-row"><span class="r6-num">5</span><span class="r6-ico">🔧</span><span class="r6-title">Plakasız / Atanmamış</span><button class="btn-dark btn-sm r6-show" onclick="adminRaporGoster(5)">▶ Göster</button><button class="btn-gold btn-sm" onclick="adminRaporExport(5)">⬇ Aktar</button></div>
+          <div class="r6-row"><span class="r6-num">6</span><span class="r6-ico">❌</span><span class="r6-title">İptal Listesi</span><button class="btn-dark btn-sm r6-show" onclick="adminRaporGoster(6)">▶ Göster</button><button class="btn-gold btn-sm" onclick="adminRaporExport(6)">⬇ Aktar</button></div>
+          <div class="r6-row"><span class="r6-num">7</span><span class="r6-ico">🌍</span><span class="r6-title">Uyruk Dağılımı</span><button class="btn-dark btn-sm r6-show" onclick="adminRaporGoster(7)">▶ Göster</button><button class="btn-gold btn-sm" onclick="adminRaporExport(7)">⬇ Aktar</button></div>
+          <div class="r6-row"><span class="r6-num">8</span><span class="r6-ico">⏰</span><span class="r6-title">Saatlik Dağılım</span><button class="btn-dark btn-sm r6-show" onclick="adminRaporGoster(8)">▶ Göster</button><button class="btn-gold btn-sm" onclick="adminRaporExport(8)">⬇ Aktar</button></div>
         </div>
         <div id="adminRapor6Result" style="margin-top:4px"></div>
       </div>
